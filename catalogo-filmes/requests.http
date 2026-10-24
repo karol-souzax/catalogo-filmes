@@ -1,0 +1,125 @@
+@baseUrl = http://127.0.0.1:8080
+
+### Informações da aplicação
+GET {{baseUrl}}/
+
+### Saúde
+GET {{baseUrl}}/health
+
+# =========================== SUCESSO ===========================
+
+### 201 Created — cadastra filme (resposta traz Location: /filmes/{id})
+POST {{baseUrl}}/filmes
+Content-Type: application/json
+
+{"titulo":"Matrix","duracaoMinutos":136}
+
+### 201 Created — segundo filme (útil para testar o filtro)
+POST {{baseUrl}}/filmes
+Content-Type: application/json
+
+{"titulo":"O Senhor dos Anéis","duracaoMinutos":178}
+
+### 201 Created — limite exato de 600 minutos é aceito
+POST {{baseUrl}}/filmes
+Content-Type: application/json
+
+{"titulo":"Maratona Épica","duracaoMinutos":600}
+
+### 200 OK — lista todos
+GET {{baseUrl}}/filmes
+
+### 200 OK — filtra por parte do título, sem diferenciar maiúsculas/minúsculas
+GET {{baseUrl}}/filmes?titulo=MATRIX
+
+### 200 OK — filtro por trecho no meio do título
+GET {{baseUrl}}/filmes?titulo=senhor
+
+### 200 OK — filtro sem resultados devolve lista vazia
+GET {{baseUrl}}/filmes?titulo=titanic
+
+### 200 OK — consulta por ID (ajuste conforme o POST)
+GET {{baseUrl}}/filmes/1
+
+### 200 OK — atualiza (o ID 1 é preservado)
+PUT {{baseUrl}}/filmes/1
+Content-Type: application/json
+
+{"titulo":"Matrix Reloaded","duracaoMinutos":138}
+
+### 204 No Content — exclui
+DELETE {{baseUrl}}/filmes/1
+
+# ============================ ERROS ============================
+
+### 400 — título em branco e duração zero (dois detalhes no corpo do erro)
+POST {{baseUrl}}/filmes
+Content-Type: application/json
+
+{"titulo":"   ","duracaoMinutos":0}
+
+### 400 — duração negativa
+POST {{baseUrl}}/filmes
+Content-Type: application/json
+
+{"titulo":"Matrix","duracaoMinutos":-10}
+
+### 400 — título ausente
+POST {{baseUrl}}/filmes
+Content-Type: application/json
+
+{"duracaoMinutos":120}
+
+### 400 — JSON malformado
+POST {{baseUrl}}/filmes
+Content-Type: application/json
+
+{"titulo":
+
+### 400 — tipo incompatível (duração não inteira)
+POST {{baseUrl}}/filmes
+Content-Type: application/json
+
+{"titulo":"Matrix","duracaoMinutos":1.5}
+
+### 400 — ID não numérico
+GET {{baseUrl}}/filmes/abc
+
+### 400 — atualização com as mesmas validações do cadastro
+PUT {{baseUrl}}/filmes/1
+Content-Type: application/json
+
+{"titulo":"","duracaoMinutos":100}
+
+### 404 — filme inexistente (consulta)
+GET {{baseUrl}}/filmes/999
+
+### 404 — filme inexistente (atualização)
+PUT {{baseUrl}}/filmes/999
+Content-Type: application/json
+
+{"titulo":"Qualquer","duracaoMinutos":100}
+
+### 404 — filme inexistente (exclusão)
+DELETE {{baseUrl}}/filmes/999
+
+### 422 — regra de negócio: duração acima de 600 minutos (cadastro)
+POST {{baseUrl}}/filmes
+Content-Type: application/json
+
+{"titulo":"Filme Longo Demais","duracaoMinutos":601}
+
+### 422 — regra de negócio na atualização (o filme 2 permanece inalterado)
+PUT {{baseUrl}}/filmes/2
+Content-Type: application/json
+
+{"titulo":"Senhor dos Anéis Estendido","duracaoMinutos":601}
+
+### 415 — Content-Type diferente de application/json
+POST {{baseUrl}}/filmes
+Content-Type: text/plain
+
+texto
+
+### 405 — método não permitido (resposta traz o cabeçalho Allow)
+PATCH {{baseUrl}}/filmes/1
