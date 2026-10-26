@@ -35,7 +35,7 @@ java -jar target/catalogo-filmes-1.0.0.jar
 
 A API ficará disponível em:
 
-http://localhost:8080
+
 
 🔗 Rotas
 
