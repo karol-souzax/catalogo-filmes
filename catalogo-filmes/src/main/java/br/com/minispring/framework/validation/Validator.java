@@ -15,12 +15,16 @@ public final class Validator {
                 // Em um record, o componente nome tem o accessor nome(). Invocá-lo por reflection
                 // permite validar DTOs diferentes sem escrever um if para cada classe de aplicação.
                 Object field = component.getAccessor().invoke(value);
+                if (field == null && component.isAnnotationPresent(NotNull.class)) {
+                    errors.add(component.getName() + " é obrigatório");
+                    continue;
+                }
                 if (component.isAnnotationPresent(NotBlank.class)
-                    && (!(field instanceof String text) || text.isBlank())) {
+                        && (!(field instanceof String text) || text.isBlank())) {
                     errors.add(component.getName() + " não pode estar em branco");
                 }
                 if (component.isAnnotationPresent(Positive.class)
-                    && (!(field instanceof Number number) || number.doubleValue() <= 0)) {
+                        && (!(field instanceof Number number) || number.doubleValue() <= 0)) {
                     errors.add(component.getName() + " deve ser positivo");
                 }
             } catch (ReflectiveOperationException e) {

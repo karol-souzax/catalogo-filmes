@@ -94,7 +94,7 @@ public final class DispatcherServlet extends HttpServlet {
                     // O tipo genérico é preservado, o que também permite representar tipos como List<DTO>.
                     arguments[i] = json.readValue(bytes, json.constructType(parameter.getParameterizedType()));
                 } catch (JsonProcessingException e) {
-                    throw new HttpException(400, "JSON inválido ou incompatível com os campos esperados");
+                    throw new HttpException(400, "JSON inválido ou incompatível com os campos esperados: " + e.getOriginalMessage());
                 }
                 // Validar antes de chamar o controller evita processar entradas estruturalmente inválidas.
                 // Nosso Validator só inspeciona records no primeiro nível; não percorre listas ou objetos aninhados.
