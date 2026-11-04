@@ -58,7 +58,7 @@ Caso seja informado um valor maior que 600 minutos, a API retorna:
 
 HTTP 422 - Unprocessable Entity
 
-🤖 Uso de IA
+🤖 Uso de IA ( CHAT GPT)
 
 A Inteligência Artificial foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, auxiliando na criação e adaptação de classes, testes e documentação.
 
