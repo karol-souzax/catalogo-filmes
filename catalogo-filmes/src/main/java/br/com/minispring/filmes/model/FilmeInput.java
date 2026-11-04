@@ -6,9 +6,9 @@ import br.com.minispring.framework.validation.Positive;
 
 
 /**
- * DTO de entrada, usado no cadastro (POST) e na atualização (PUT).
- * Não possui ID: o cliente nunca escolhe o identificador.
- * Como as duas operações usam o mesmo DTO, as validações estruturais são idênticas.
+ * DTO de entrada, usado no cadastro (POST) e na atualização (PUT)
+ * o cliente nunca escolhe o identificador(id)
+ * as anotacoes vem do validador do framework por reflection, antes do controller
  */
 public record FilmeInput(
         @NotBlank String titulo,

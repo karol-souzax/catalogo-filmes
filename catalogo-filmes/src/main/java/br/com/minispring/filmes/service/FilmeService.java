@@ -10,10 +10,8 @@ import java.util.List;
 import java.util.Locale;
 
 @Service
-public final class FilmeService {
-    /** Regra de negócio: duração máxima de um filme do catálogo. */
+public final class  FilmeService {
     public static final int DURACAO_MAXIMA_MINUTOS = 600;
-
     private final FilmeRepository repository;
 
     // Injeção por construtor, dependendo da interface (não da implementação em memória).

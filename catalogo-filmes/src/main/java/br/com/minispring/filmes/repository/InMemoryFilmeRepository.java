@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public final class InMemoryFilmeRepository implements FilmeRepository {
     // Bean singleton compartilhado entre requisições concorrentes: estruturas thread-safe.
     private final ConcurrentHashMap<Long, Filme> filmes = new ConcurrentHashMap<>();
-    // Gera IDs sequenciais de forma atômica (1, 2, 3...). Reinicia junto com a aplicação.
+    // Gera IDs sequenciais de forma atômica. Reinicia junto com a aplicação.
     private final AtomicLong sequence = new AtomicLong();
 
     @Override

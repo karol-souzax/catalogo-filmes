@@ -1,13 +1,11 @@
 package br.com.minispring.filmes.repository;
 
 import br.com.minispring.filmes.model.Filme;
-
 import java.util.List;
 import java.util.Optional;
 
 /**
  * Contrato de armazenamento. O Service depende desta interface;
- * o container de injeção encontra a implementação.
  */
 public interface FilmeRepository {
     Filme create(String titulo, int duracaoMinutos);
