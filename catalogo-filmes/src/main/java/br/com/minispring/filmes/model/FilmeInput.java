@@ -1,7 +1,6 @@
 package br.com.minispring.filmes.model;
 
 import br.com.minispring.framework.validation.NotBlank;
-import br.com.minispring.framework.validation.NotNull;
 import br.com.minispring.framework.validation.Positive;
 
 
@@ -12,4 +11,4 @@ import br.com.minispring.framework.validation.Positive;
  */
 public record FilmeInput(
         @NotBlank String titulo,
-        @NotNull @Positive Integer duracaoMinutos) {}
+        @Positive Integer duracaoMinutos) {}
