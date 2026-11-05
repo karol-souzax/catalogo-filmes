@@ -1,8 +1,6 @@
 package br.com.minispring.framework.context;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
@@ -26,7 +24,7 @@ public final class AppConfig {
         // Ler como recurso do classpath funciona também dentro do JAR.
         // try-with-resources fecha o stream automaticamente, inclusive quando há exceção.
         try (var input = AppConfig.class.getClassLoader().getResourceAsStream("application.properties")) {
-            if (input != null) properties.load(new InputStreamReader(input, StandardCharsets.UTF_8));
+            if (input != null) properties.load(input);
         } catch (IOException e) {
             throw new IllegalStateException("Não foi possível ler application.properties", e);
         }
