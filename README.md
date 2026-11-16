@@ -13,7 +13,7 @@ API para gerenciamento de um catálogo de filmes, desenvolvida em Java 21 utiliz
 
 🎯 Domínio
 
-O sistema representa um catálogo de filmes de uma plataforma de streaming.
+/filmes
 
 Cada filme possui:
 
@@ -72,14 +72,6 @@ Realocando o readme da pasta, para o readme raiz...
 API para gerenciar o catálogo de filmes de uma plataforma de streaming, construída sobre o framework Mini Spring (Java 21, Jetty embutido, container IoC próprio, injeção por construtor e roteamento por anotações). Projeto acadêmico: sem frontend, banco de dados ou autenticação; os dados ficam em memória.
 
 > O projeto fica na pasta [`catalogo-filmes/`](./catalogo-filmes). Os comandos abaixo devem ser executados de dentro dela.
-
-## Integrantes
-
-| Nome | Matrícula |
-|---|---|
-| Preencher: nome do integrante 1 | — |
-| Preencher: nome do integrante 2 | — |
-| Preencher: nome do integrante 3 | — |
 
 ## Domínio
 
