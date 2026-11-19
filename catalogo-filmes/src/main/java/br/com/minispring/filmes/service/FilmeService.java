@@ -3,8 +3,9 @@ package br.com.minispring.filmes.service;
 import br.com.minispring.filmes.model.Filme;
 import br.com.minispring.filmes.model.FilmeInput;
 import br.com.minispring.filmes.repository.FilmeRepository;
-import br.com.minispring.framework.annotation.Service;
-import br.com.minispring.framework.web.HttpException;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Locale;
@@ -19,7 +20,9 @@ public final class  FilmeService {
         this.repository = repository;
     }
 
-    /** Lista todos os filmes cujo título contém o texto informado, ignorando maiúsculas/minúsculas. */
+    /**
+     * Lista todos os filmes cujo título contém o texto informado, ignorando maiúsculas/minúsculas.
+     */
     public List<Filme> list(String titulo) {
         // Locale.ROOT evita que o resultado dependa do idioma configurado na máquina.
         String filtro = titulo.trim().toLowerCase(Locale.ROOT);
@@ -52,11 +55,13 @@ public final class  FilmeService {
     // @NotBlank e @Positive validam a forma da entrada (400); este limite é regra de domínio (422).
     private void validateBusinessRule(FilmeInput input) {
         if (input.duracaoMinutos() > DURACAO_MAXIMA_MINUTOS) {
-            throw new HttpException(422, "Um filme pode ter no máximo " + DURACAO_MAXIMA_MINUTOS + " minutos");
+            throw new ResponseStatusException(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    "Um filme pode ter no máximo 600 minutos"
+            );
         }
     }
-
-    private HttpException notFound() {
-        return new HttpException(404, "Filme não encontrado");
+    private ResponseStatusException notFound() {
+        return new ResponseStatusException(HttpStatus.NOT_FOUND, "Filme não encontrado");
     }
 }

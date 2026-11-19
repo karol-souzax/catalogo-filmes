@@ -1,7 +1,7 @@
 package br.com.minispring.filmes.repository;
 
 import br.com.minispring.filmes.model.Filme;
-import br.com.minispring.framework.annotation.Repository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Comparator;
 import java.util.List;

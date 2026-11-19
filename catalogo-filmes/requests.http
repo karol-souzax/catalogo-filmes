@@ -74,7 +74,7 @@ Content-Type: application/json
 POST {{baseUrl}}/filmes
 Content-Type: application/json
 
-{"titulo":
+{"titulo":}
 
 ### 400 — tipo incompatível (duração não inteira)
 POST {{baseUrl}}/filmes

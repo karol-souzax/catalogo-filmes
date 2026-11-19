@@ -1,14 +1,13 @@
 package br.com.minispring.filmes.model;
 
-import br.com.minispring.framework.validation.NotBlank;
-import br.com.minispring.framework.validation.Positive;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
-
-/**
- * DTO de entrada, usado no cadastro (POST) e na atualização (PUT)
- * o cliente nunca escolhe o identificador(id)
- * as anotacoes vem do validador do framework por reflection, antes do controller
- */
 public record FilmeInput(
-        @NotBlank String titulo,
-        @Positive Integer duracaoMinutos) {}
+        @NotBlank(message = "O título é obrigatório")
+        String titulo,
+
+        @Positive(message = "A duração deve ser maior que zero")
+        int duracaoMinutos
+) {
+}
